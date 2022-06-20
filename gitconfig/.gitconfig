@@ -1,0 +1,24 @@
+[ghq]
+	vcs = git
+	root = /home/bruino/dev
+
+[includeIf "gitdir:~/dev/gitlab.com/ank"]
+    [user]
+        email = "bruno.sarverry.ext@ank.app"
+    [core]
+        sshCommand = "ssh -i ~/.ssh/ank_gitlab"
+
+[includeIf "gitdir:~/dev/gitlab.com/muttdata"]
+    [user]
+        name = bruno.sarverry
+        email = bruno.sarverry@muttdata.ai
+
+[includeIf "gitdir:~/dev/gitlab.com/sarverry"]
+    [user]
+        name = sarverry
+        email = bruno.sarverry@gmail.com
+
+[includeIf "gitdir:~/dev/github.com/bruino"]
+    [user]
+        name = bruino
+        email = bruno.sarverry@gmail.com
