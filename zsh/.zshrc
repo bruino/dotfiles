@@ -80,7 +80,14 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+plugins=(
+  # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
+  git
+  # https://github.com/zsh-users/zsh-autosuggestions 
+  zsh-autosuggestions
+  # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
+  docker
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -101,6 +108,12 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+# Requirements: git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -109,11 +122,15 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+alias c.="code ."
+alias zupdate="sudo apt update"
+alias zupgrade="sudo apt upgrade"
+alias zclean="sudo apt autoclean"
+alias zremove="sudo apt remove"
+alias fgco="git branch | fzf --height 40% -d 15 | xargs git checkout"
+alias fga="git ls-files -m -o --exclude-standard | fzf -m --print0 | xargs -0 -o -t git add" #TODO: preview diff
+# alias vpn-up="nmcli connection --show | grep -i vpn | awk '{print $1}' | fzf | xargs nmcli --ask con up id"
+# alias vpn-down=nmcli con down id $(nmcli connection --show --active | grep -i vpn | awk '{print $1}' | fzf)
 
 # Created by `pipx` on 2022-05-18 02:37:22
 export PATH="$PATH:/home/bruino/.local/bin"
